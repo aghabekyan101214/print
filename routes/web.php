@@ -11,6 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Auth::routes();
+
+Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function(){
+    Route::get("/", "HomeController@index");
+    Route::resource("business-services", "admin\BusinessServiceController");
+    Route::resource("products", "admin\ProductController");
 });
+
+//Route::get('/home', '')->name('home');
