@@ -39,13 +39,30 @@
 
                                 <div class="form-group">
                                     <label class="control-label col-md-2">Select Forms For Current Product (Multiple)</label>
-                                    <div class="col-md-9">
-                                        <select name="form_id[]" multiple class="form-control select2" id="">
+                                    <div class="col-md-6">
+                                        <select name="form_id[]" multiple class="form-control select2 form_select" id="">
                                             @foreach($forms as $form)
                                                 <option @if(in_array($form->id, $chosenForms)) selected @endif value="{{ $form->id }}">{{ $form->name }}</option>
                                             @endforeach
                                         </select>
                                         @error('image')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="col-md-4">
+                                        <select name="" class="form-control col-md-11 select2" onchange="selectForm('{{ json_encode($form1) }}', '{{ json_encode($form2) }}', $(this))" id="">
+                                            <option value="0">Custom</option>
+                                            <option @if(array_diff($chosenForms, $form1) == array_diff($form1, $chosenForms)) selected @endif value="1">Form (1)</option>
+                                            <option @if(array_diff($chosenForms, $form2) == array_diff($form2, $chosenForms)) selected @endif value="2">Form (2)</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">Product Price</label>
+                                    <div class="col-md-9">
+                                        <input type="number" step="any" value="{{ $product->price }}" placeholder="price" class="form-control" name="price" required>
+                                        @error('price')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
                                     </div>

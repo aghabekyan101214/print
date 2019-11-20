@@ -63,7 +63,9 @@ class ProductController extends Controller
         $categories = Product::CATEGORIES;
         $forms = Form::all();
         $route = self::ROUTE;
-        return view(self::FOLDER."create", compact("route", "forms", "categories"));
+        $form1 = Product::FORM_1;
+        $form2 = Product::FORM_2;
+        return view(self::FOLDER."create", compact("route", "forms", "categories", "form1", "form2"));
     }
 
     /**
@@ -78,7 +80,8 @@ class ProductController extends Controller
         $request->validate([
             'name' => 'required|max:255',
             "category" => 'required|integer',
-            "form_id" => "required"
+            "form_id" => "required",
+            "price" => "required|numeric"
         ]);
         $images = [];
         if(null != $request->images)
@@ -92,6 +95,7 @@ class ProductController extends Controller
         $product = new Product();
         $product->name = $request->name;
         $product->category = $request->category;
+        $product->price = $request->price;
         $product->save();
 
         $product->forms()->sync($request->form_id);
@@ -128,7 +132,9 @@ class ProductController extends Controller
         foreach ($product->forms()->get() as $form){
             $chosenForms[] = $form->id;
         }
-        return view(self::FOLDER."edit", compact("route", "forms", "categories", "product", "chosenForms"));
+        $form1 = Product::FORM_1;
+        $form2 = Product::FORM_2;
+        return view(self::FOLDER."edit", compact("route", "forms", "categories", "product", "chosenForms", "form1", "form2"));
     }
 
     /**
@@ -144,7 +150,8 @@ class ProductController extends Controller
         $request->validate([
             'name' => 'required|max:255',
             "category" => 'required|integer',
-            "form_id" => "required"
+            "form_id" => "required",
+            "price" => "required|numeric"
         ]);
         $images = [];
         if(null != $request->images)
@@ -157,6 +164,7 @@ class ProductController extends Controller
         DB::beginTransaction();
         $product->name = $request->name;
         $product->category = $request->category;
+        $product->price = $request->price;
         $product->save();
 
         $product->forms()->sync($request->form_id);

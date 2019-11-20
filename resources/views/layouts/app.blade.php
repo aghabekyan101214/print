@@ -118,6 +118,20 @@
                         </a>
                     </li>
 
+                    <li>
+                        <a href="/admin/static-data" class="waves-effect">
+                            <i class="mdi mdi-file-xml fa-fw"></i>
+                            <span class="hide-menu">Static Data</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="/admin/product-attributes" class="waves-effect">
+                            <i class="mdi mdi-view-list fa-fw"></i>
+                            <span class="hide-menu">Product Attributes</span>
+                        </a>
+                    </li>
+
                 </ul>
             </div>
         </div>
@@ -183,6 +197,19 @@
         });
     });
 
+    function selectForm(form1, form2, _this) {
+        var form;
+        if(_this.val() == 1) {
+            form = JSON.parse(form1);
+        }
+        else if(_this.val() == 2) {
+            form = JSON.parse(form2);
+        } else {
+            return;
+        }
+        $(".form_select").select2("val", [form]);
+    }
+
 </script>
 
 <!-- Bootstrap Core JavaScript -->
@@ -201,7 +228,8 @@
 <script src="{{ asset("assets/select2/dist/js/select2.min.js") }}"></script>
 <!--Dropify js-->
 <script src="{{ asset("assets/plugins/bower_components/dropify/dist/js/dropify.min.js") }}"></script>
-
+<!--Ckeditor js-->
+<script src="{{ asset("assets/ckeditor/ckeditor5-build-classic/ckeditor.js") }}"></script>
 </body>
 
 </html>

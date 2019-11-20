@@ -9,69 +9,59 @@
                     <div class="panel-body">
                         <form action="{{ $route }}" method="post" enctype="multipart/form-data" class="form-horizontal form-bordered">
                             @csrf
+                            @if(null !== $data)
+                                <input type="hidden" name="id" value="{{ $data->id }}">
+                            @endif
                             <div class="form-body">
 
                                 <div class="form-group">
-                                    <label class="control-label col-md-2">Product Name</label>
-                                    <div class="col-md-9">
-                                        <input type="text" value="{{ old("name") }}" placeholder="Name" class="form-control" name="name" required>
-                                        @error('name')
+                                    <label class="control-label col-md-2">Main Banner Image</label>
+                                    <div class="col-md-5">
+                                        <input type="file" value="{{ $data->main_banner ?? old("main_banner") }}" id="input-file-now" class="dropify" name="main_banner" />
+                                        @error('main_banner')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
+                                    </div>
+                                    <div class="col-md-5">
+                                        <img src="{{ asset("uploads/" . $data->main_banner) }}" height="150px" alt="">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="control-label col-md-2">Choose Main Category</label>
+                                    <label class="control-label col-md-2">Main Title</label>
                                     <div class="col-md-9">
-                                        <select name="category" required class="form-control" id="">
-                                            <option value="">Select Category</option>
-                                            @foreach($categories as $bin => $category)
-                                                <option @if(old("category") == $bin) selected @endif value="{{ $bin }}">{{ $category }}</option>
-                                            @endforeach
-                                        </select>
-                                        @error('category')
+                                        <input type="text" placeholder="Main Title" value="{{ $data->main_title ?? old("main_title") }}" required class="form-control" name="main_title">
+                                        @error('main_title')
                                             <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="control-label col-md-2">Select Forms For Current Product (Multiple)</label>
-                                    <div class="col-md-6">
-                                        <select name="form_id[]" multiple class="form-control select2 form_select" id="">
-                                            @foreach($forms as $form)
-                                                <option @if(null != old("form_id") && in_array($form->id, old("form_id"))) selected @endif value="{{ $form->id }}">{{ $form->name }}</option>
-                                            @endforeach
-                                        </select>
-                                        @error('image')
-                                            <div class="alert alert-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                    <div class="col-md-4">
-                                        <select name="" class="form-control col-md-11 select2" onchange="selectForm('{{ json_encode($form1) }}', '{{ json_encode($form2) }}', $(this))" id="">
-                                            <option value="0">Custom</option>
-                                            <option value="1">Form (1)</option>
-                                            <option value="2">Form (2)</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="control-label col-md-2">Product Price</label>
+                                    <label class="control-label col-md-2">Main text</label>
                                     <div class="col-md-9">
-                                        <input type="number" step="any" value="{{ old("price") }}" placeholder="price" class="form-control" name="price" required>
-                                        @error('price')
+                                        <textarea name="main_text" class="form-control editor">{{ $data->main_text ?? old("main_text") }}</textarea>
+                                        @error('main_text')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="control-label col-md-2">Upload Slider Images (Choose Multiple)</label>
+                                    <label class="control-label col-md-2">About Title</label>
                                     <div class="col-md-9">
-                                        <input multiple value="{{ old("images") }}" type="file" id="input-file-now" class="dropify" name="images[]" />
-                                        @error('images')
+                                        <input type="text" placeholder="About Title" value="{{ $data->about_title ?? old("about_title") }}" required class="form-control" name="about_title">
+                                        @error('about_title')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">About text</label>
+                                    <div class="col-md-9">
+                                        <textarea name="about_text" id="editor" class="form-control ">{{ $data->about_text ?? old("about_text") }}</textarea>
+                                        @error('about_text')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
@@ -99,4 +89,26 @@
             </div>
         </div>
     </div>
+
+    <script>
+        $(document).ready(function(){
+            ClassicEditor
+                .create( document.querySelector( '.editor' ) )
+                .then( editor => {
+                    console.log( editor );
+                } )
+                .catch( error => {
+                    console.error( error );
+                } );
+
+            ClassicEditor
+                .create( document.querySelector( '#editor' ) )
+                .then( editor => {
+                    console.log( editor );
+                } )
+                .catch( error => {
+                    console.error( error );
+                } );
+        });
+    </script>
 @endsection

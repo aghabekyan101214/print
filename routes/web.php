@@ -17,6 +17,11 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function(){
     Route::get("/", "HomeController@index");
     Route::resource("business-services", "admin\BusinessServiceController");
     Route::resource("products", "admin\ProductController");
+    Route::resource("product-attributes", "admin\ProductAttributeController");
+    Route::get("static-data", "admin\StaticDataController@index");
+    Route::post("static-data", "admin\StaticDataController@store");
 });
-
+Route::get("migrate", function(){
+    return \Illuminate\Support\Facades\Artisan::call("migrate");
+});
 //Route::get('/home', '')->name('home');
