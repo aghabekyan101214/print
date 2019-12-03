@@ -21,7 +21,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function(){
     Route::get("static-data", "admin\StaticDataController@index");
     Route::post("static-data", "admin\StaticDataController@store");
 });
-Route::get("migrate", function(){
-    return \Illuminate\Support\Facades\Artisan::call("migrate");
-});
-//Route::get('/home', '')->name('home');
+Route::get('/', 'client\HomeController@index');
+Route::get('/services', 'client\ServiceController@index');
+Route::get('/contact-us', 'client\ContactController@index');
