@@ -23,7 +23,7 @@
                                         @enderror
                                     </div>
                                     <div class="col-md-5">
-                                        <img src="{{ asset("uploads/" . $data->main_banner ?? "") }}" height="150px" alt="">
+                                        <img src="{{ asset("uploads/" . ($data->main_banner ?? "")) }}" height="150px" alt="">
                                     </div>
                                 </div>
 
