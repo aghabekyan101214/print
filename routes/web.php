@@ -21,6 +21,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function(){
     Route::get("static-data", "admin\StaticDataController@index");
     Route::post("static-data", "admin\StaticDataController@store");
 });
-Route::get('/', 'client\HomeController@index');
+Route::get('/', function(){
+    return redirect("/admin");
+});
 Route::get('/services', 'client\ServiceController@index');
 Route::get('/contact-us', 'client\ContactController@index');
