@@ -12,4 +12,8 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
+Route::group(["middleware" => "cors"], function(){
+    Route::get('/get-main', 'api\HomeController@index');
+    Route::get('/get-business-services', 'api\BusinessServiceController@index');
+    Route::get('/business-service/{slug?}', 'api\BusinessServiceController@getBusinessService');
+});

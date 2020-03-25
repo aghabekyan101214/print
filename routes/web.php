@@ -23,7 +23,5 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function(){
 });
 Route::get('/services', 'client\ServiceController@index');
 Route::get('/contact-us', 'client\ContactController@index');
-Route::group(["middleware" => "cors"], function(){
-    Route::get('/get-main', 'api\HomeController@index');
-});
+
 

@@ -13,6 +13,16 @@
                             <div class="form-body">
 
                                 <div class="form-group">
+                                    <label class="control-label col-md-2">Slug (Auto Filling)</label>
+                                    <div class="col-md-9">
+                                        <input type="text" placeholder="Slug" value="{{ $businessService->slug }}" required class="form-control slug" name="slug">
+                                        @error('slug')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
                                     <label class="control-label col-md-2">Business Service Title</label>
                                     <div class="col-md-9">
                                         <input type="text" placeholder="Title" value="{{ $businessService->title }}" required class="form-control" name="title">
@@ -92,6 +102,16 @@
             $.post( "{{ $route."/".$businessService->id }}", {_method: "DELETE", image_id: id},  function( data ) {
                 _this.parentsUntil(".row").remove();
             });
+        }
+
+        function convertToSlug(Text)
+        {
+            let text = Text
+                .toLowerCase()
+                .replace(/ /g,'-')
+                .replace(/[^\w-]+/g,'')
+            ;
+            $(".slug").val(text);
         }
     </script>
 @endsection
