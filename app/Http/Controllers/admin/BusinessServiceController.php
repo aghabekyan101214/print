@@ -66,9 +66,9 @@ class BusinessServiceController extends Controller
     {
         $allowedfileExtension = ['jpg', 'png', 'jpeg', 'jfif'];
         $request->validate([
-            'title' => 'required|unique:business_services|max:255',
+            'title' => 'required|unique:business_services|max:191',
             'image' => 'required|mimes:jpeg,jpg,png,jfif',
-            'slug' => 'required|unique:business_services|max:255'
+            'slug' => 'required|unique:business_services|max:191'
         ]);
         $images = [];
         if(null != $request->images)
@@ -125,9 +125,9 @@ class BusinessServiceController extends Controller
     {
         $allowedfileExtension = ['jpg', 'png', 'jpeg', 'jfif'];
         $request->validate([
-            'title' => $businessService->title != $request->title ? 'required|unique:business_services|max:255' : "",
+            'title' => $businessService->title != $request->title ? 'required|unique:business_services|max:191' : "",
             'image' => 'mimes:jpeg,jpg,png,jfif',
-            'slug' => $businessService->slug == $request->slug ? 'required|max:255' : 'required|max:255|unique:business_services'
+            'slug' => $businessService->slug == $request->slug ? 'required|max:191' : 'required|max:191|unique:business_services'
         ]);
         $images = [];
         if(null != $request->images)

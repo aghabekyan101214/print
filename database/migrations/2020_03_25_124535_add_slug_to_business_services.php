@@ -14,7 +14,7 @@ class AddSlugToBusinessServices extends Migration
     public function up()
     {
         Schema::table('business_services', function (Blueprint $table) {
-            $table->string("slug", 255)->unique();
+            $table->string("slug", 191)->unique();
         });
     }
 
