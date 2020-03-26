@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\modelsAdmin\BusinessService;
+use App\modelsAdmin\Logo;
 use App\modelsAdmin\StaticData;
 use Illuminate\Http\File;
 use Illuminate\Http\Request;
@@ -61,12 +62,8 @@ class StaticDataController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'main_banner' => 'mimes:jpeg,jpg,png,jfif',
-            'main_title' => 'required|max:255',
-            'main_text' => 'required',
-            'about_title' => 'required|max:255',
             'about_text' => 'required',
-
+            'image' => 'mimes:jpeg,jpg,png,jfif',
         ]);
 
         $staticData = null == $request->id ? new StaticData() : StaticData::find($request->id);
@@ -74,11 +71,20 @@ class StaticDataController extends Controller
             $file = Storage::putFile(self::UPLOAD_FOLDER, new File($request->main_banner), 'public');
             $staticData->main_banner = $file;
         }
-        $staticData->main_title = $request->main_title;
-        $staticData->main_text = $request->main_text;
-        $staticData->about_title = $request->about_title;
+        $logos = [];
+        $allowedfileExtension = ['jpg', 'png', 'jpeg', 'jfif'];
+        if(null != $request->logos)
+            foreach ($request->logos as $image) {
+                if(in_array($image->getClientOriginalExtension(), $allowedfileExtension)) {
+                    $image = Storage::putFile(self::UPLOAD_FOLDER, new File($image), 'public');
+                    $logos[]["image"] = $image;
+                }
+            }
         $staticData->about_text = $request->about_text;
         $staticData->save();
+        if(!empty($logos)) {
+            DB::table('logos')->insert($logos);
+        }
         return redirect(self::ROUTE);
     }
 }

@@ -15,53 +15,20 @@
                             <div class="form-body">
 
                                 <div class="form-group">
-                                    <label class="control-label col-md-2">Main Banner Image</label>
-                                    <div class="col-md-5">
-                                        <input type="file" value="{{ $data->main_banner ?? old("main_banner") }}" id="input-file-now" class="dropify" name="main_banner" />
-                                        @error('main_banner')
-                                        <div class="alert alert-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                    <div class="col-md-5">
-                                        <img src="{{ asset("uploads/" . ($data->main_banner ?? "")) }}" height="150px" alt="">
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="control-label col-md-2">Main Title</label>
-                                    <div class="col-md-9">
-                                        <input type="text" placeholder="Main Title" value="{{ $data->main_title ?? old("main_title") }}" required class="form-control" name="main_title">
-                                        @error('main_title')
-                                            <div class="alert alert-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="control-label col-md-2">Main text</label>
-                                    <div class="col-md-9">
-                                        <textarea name="main_text" class="form-control editor">{{ $data->main_text ?? old("main_text") }}</textarea>
-                                        @error('main_text')
-                                        <div class="alert alert-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="control-label col-md-2">About Title</label>
-                                    <div class="col-md-9">
-                                        <input type="text" placeholder="About Title" value="{{ $data->about_title ?? old("about_title") }}" required class="form-control" name="about_title">
-                                        @error('about_title')
-                                        <div class="alert alert-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
                                     <label class="control-label col-md-2">About text</label>
                                     <div class="col-md-9">
                                         <textarea name="about_text" id="editor" class="form-control ">{{ $data->about_text ?? old("about_text") }}</textarea>
                                         @error('about_text')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">Logos (Choose Multiple)</label>
+                                    <div class="col-md-9">
+                                        <input multiple value="{{ old("logos") }}" type="file" id="input-file-now" class="dropify" name="logos[]" />
+                                        @error('logos')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
