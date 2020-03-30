@@ -19,7 +19,7 @@ class BusinessServiceController extends Controller
     public function getBusinessService($slug)
     {
         $url = Url::to("/");
-        $service = BusinessService::selectRaw("id, title")->where("slug", $slug)->with(["images" => function($query) use($url) {
+        $service = BusinessService::selectRaw("id, title, slug")->where("slug", $slug)->with(["images" => function($query) use($url) {
             $query->selectRaw("id, concat('".$url."/uploads/', image) as image, business_service_id");
         }])->first();
         return response()->json($service);
