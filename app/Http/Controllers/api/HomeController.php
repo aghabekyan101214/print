@@ -17,6 +17,7 @@ class HomeController extends Controller
         $data = StaticData::selectRaw("about_text")->first();
         $url = Url::to("/");
         $logos = Logo::selectRaw("id, concat('".$url."/uploads/', image) as image")->get();
+
         $resp = array(
             "about" => $data,
             "logos" => $logos,
