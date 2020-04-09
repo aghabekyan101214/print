@@ -12,14 +12,15 @@ class FormsTableSeeder extends Seeder
     public function run()
     {
         DB::table('forms')->insert([
-            ['name' => 'Flat Size'],
-            ['name' => 'Paper Stock'],
-            ['name' => 'Printed Side Options'],
-            ['name' => 'Finishing'],
-            ['name' => 'Quantity'],
-            ['name' => 'Turnaround time'],
-            ['name' => 'Material'],
-            ['name' => 'Shape'],
+            ['name' => 'Paper Type', "slug" => "paper_type"],
+            ['name' => 'Shape', "slug" => "shape"],
+            ['name' => 'Colors', "slug" => "colors"],
+            ['name' => 'Finishing', "slug" => "finishing"],
+            ['name' => 'Size', "slug" => "size"],
+            ['name' => 'Quantity', "slug" => "quantity"],
+            ['name' => 'Material Type', "slug" => "material_type"],
+            ['name' => 'Print Side', "slug" => "print_side"],
+            ['name' => 'Thickness', "slug" => "thickness"],
         ]);
     }
 }

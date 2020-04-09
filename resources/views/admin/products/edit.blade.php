@@ -52,51 +52,11 @@
                                     <div class="col-md-4">
                                         <select name="" class="form-control col-md-11 select2" onchange="selectForm('{{ json_encode($form1) }}', '{{ json_encode($form2) }}', $(this))" id="">
                                             <option value="0">Custom</option>
-                                            <option @if(array_diff($chosenForms, $form1) == array_diff($form1, $chosenForms)) selected @endif value="1">Form (1)</option>
-                                            <option @if(array_diff($chosenForms, $form2) == array_diff($form2, $chosenForms)) selected @endif value="2">Form (2)</option>
+                                            <option @if(array_diff($chosenForms, $form1) == array_diff($form1, $chosenForms)) selected @endif value="1">Print Service Form</option>
+                                            <option @if(array_diff($chosenForms, $form2) == array_diff($form2, $chosenForms)) selected @endif value="2">Signage/Banners Form</option>
                                         </select>
                                     </div>
                                 </div>
-
-                                <div class="form-group">
-                                    <label class="control-label col-md-2">Product Price</label>
-                                    <div class="col-md-9">
-                                        <input type="number" step="any" value="{{ $product->price }}" placeholder="price" class="form-control" name="price" required>
-                                        @error('price')
-                                        <div class="alert alert-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="control-label col-md-2">Upload Slider Images (Choose Multiple)</label>
-                                    <div class="col-md-9">
-                                        <input multiple value="{{ old("images") }}" type="file" id="input-file-now" class="dropify" name="images[]" />
-                                        @error('images')
-                                        <div class="alert alert-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                </div>
-
-                                @if(null != $product->images->first())
-
-                                    <div class="form-group">
-                                        <h2 >Slider Images</h2>
-                                        <div class="row">
-                                            @foreach($product->images as $image)
-                                                <div class="col-md-3">
-                                                    <div class="thumbnail">
-                                                        <button type="button" style="position:absolute;" onclick="del('{{ $image->id }}', $(this))" class="btn btn-danger"><i class="fa fa-trash"></i></button>
-                                                        <a href="{{ asset("uploads/$image->image") }}">
-                                                            <img src="{{ asset("uploads/$image->image") }}" style="width:100%; max-height: 200px">
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            @endforeach
-                                        </div>
-                                    </div>
-
-                                @endif
 
                                 <div class="form-actions">
                                     <div class="row">

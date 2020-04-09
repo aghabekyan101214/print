@@ -126,11 +126,28 @@
                     </li>
 
                     <li>
-                        <a href="/admin/product-attributes" class="waves-effect">
-                            <i class="mdi mdi-view-list fa-fw"></i>
-                            <span class="hide-menu">Product Attributes</span>
+                        <a href="javascript:void(0)" class="waves-effect">
+                            <i class="mdi mdi-file-xml fa-fw"></i>
+                            <span class="hide-menu">Form Values<span class="fa arrow"></span></span>
                         </a>
+                        <ul class="nav nav-second-level collapse" aria-expanded="false" style="height: 0px;">
+                            @foreach(\App\modelsAdmin\Product::all() as $product)
+                                <li>
+                                    <a href="/admin/forms/{{ $product->id }}" class="waves-effect">
+                                        <i class="mdi mdi-file-xml fa-fw"></i>
+                                        <span class="hide-menu">{{ $product->name }}</span>
+                                    </a>
+                                </li>
+                            @endforeach
+                        </ul>
                     </li>
+
+{{--                    <li>--}}
+{{--                        <a href="/admin/product-attributes" class="waves-effect">--}}
+{{--                            <i class="mdi mdi-view-list fa-fw"></i>--}}
+{{--                            <span class="hide-menu">Product Attributes</span>--}}
+{{--                        </a>--}}
+{{--                    </li>--}}
 
                 </ul>
             </div>

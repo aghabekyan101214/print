@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 */
 Route::group(["middleware" => "cors"], function(){
     Route::get('/get-main', 'api\HomeController@index');
+    Route::get('/get-form/{slug}', 'api\FormController@index');
     Route::get('/get-business-services', 'api\BusinessServiceController@index');
     Route::get('/business-service/{slug?}', 'api\BusinessServiceController@getBusinessService');
 });

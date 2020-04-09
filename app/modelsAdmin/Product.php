@@ -11,7 +11,7 @@ class Product extends Model
      *
      * @var array
      */
-    const CATEGORIES = ["Print Products", "Signage/Banner"];
+    const CATEGORIES = ["Print Products", "Signage/Banner", "Apparel Branding"];
 
     /**
      * The Form 1 IDs.
@@ -25,7 +25,7 @@ class Product extends Model
      *
      * @var array
      */
-    const FORM_2 = [1, 3, 4, 5, 6, 7, 8];
+    const FORM_2 = [7, 2, 8, 9, 5, 4, 6];
 
     public function forms()
     {

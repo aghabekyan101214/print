@@ -51,29 +51,9 @@
                                     <div class="col-md-4">
                                         <select name="" class="form-control col-md-11 select2" onchange="selectForm('{{ json_encode($form1) }}', '{{ json_encode($form2) }}', $(this))" id="">
                                             <option value="0">Custom</option>
-                                            <option value="1">Form (1)</option>
-                                            <option value="2">Form (2)</option>
+                                            <option value="1">Print Service Form</option>
+                                            <option value="2">Signage/Banners Form</option>
                                         </select>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="control-label col-md-2">Product Price</label>
-                                    <div class="col-md-9">
-                                        <input type="number" step="any" value="{{ old("price") }}" placeholder="price" class="form-control" name="price" required>
-                                        @error('price')
-                                        <div class="alert alert-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="control-label col-md-2">Upload Slider Images (Choose Multiple)</label>
-                                    <div class="col-md-9">
-                                        <input multiple value="{{ old("images") }}" type="file" id="input-file-now" class="dropify" name="images[]" />
-                                        @error('images')
-                                        <div class="alert alert-danger">{{ $message }}</div>
-                                        @enderror
                                     </div>
                                 </div>
 

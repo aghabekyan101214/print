@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use App\helpers\SlugHelper;
 
 class ProductController extends Controller
 {
@@ -76,31 +77,21 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $allowedfileExtension = ['jpg', 'png', 'jpeg', 'jfif'];
         $request->validate([
             'name' => 'required|max:255',
             "category" => 'required|integer',
             "form_id" => "required",
-            "price" => "required|numeric"
         ]);
-        $images = [];
-        if(null != $request->images)
-            foreach ($request->images as $image) {
-                if(in_array($image->getClientOriginalExtension(), $allowedfileExtension)) {
-                    $image = Storage::putFile(self::UPLOAD_FOLDER, new File($image), 'public');
-                    $images[]["image"] = $image;
-                }
-            }
+
         DB::beginTransaction();
         $product = new Product();
         $product->name = $request->name;
         $product->category = $request->category;
-        $product->price = $request->price;
+        $product->slug = SlugHelper::slugify($request->name);
         $product->save();
 
         $product->forms()->sync($request->form_id);
 
-        $product->images()->createMany($images);
         DB::commit();
 
         return redirect(self::ROUTE);
@@ -146,30 +137,15 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        $allowedfileExtension = ['jpg', 'png', 'jpeg', 'jfif'];
-        $request->validate([
-            'name' => 'required|max:255',
-            "category" => 'required|integer',
-            "form_id" => "required",
-            "price" => "required|numeric"
-        ]);
-        $images = [];
-        if(null != $request->images)
-            foreach ($request->images as $image) {
-                if(in_array($image->getClientOriginalExtension(), $allowedfileExtension)) {
-                    $image = Storage::putFile(self::UPLOAD_FOLDER, new File($image), 'public');
-                    $images[]["image"] = $image;
-                }
-            }
+
         DB::beginTransaction();
         $product->name = $request->name;
         $product->category = $request->category;
-        $product->price = $request->price;
+        $product->slug = SlugHelper::slugify($request->name);
         $product->save();
 
         $product->forms()->sync($request->form_id);
 
-        if(!empty($images)) $product->images()->createMany($images);
         DB::commit();
 
         return redirect(self::ROUTE);
@@ -183,10 +159,7 @@ class ProductController extends Controller
      */
     public function destroy(Product $product, Request $request)
     {
-        if(null == $request->image_id) {
-            $product->delete();
-            return redirect(self::ROUTE);
-        }
-        $product->images()->find($request->image_id)->delete();
+        $product->delete();
+        return redirect(self::ROUTE);
     }
 }

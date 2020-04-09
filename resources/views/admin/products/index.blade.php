@@ -10,7 +10,6 @@
                     <tr>
                         <th>Product Category</th>
                         <th>Product Name</th>
-                        <th>Slider Images</th>
                         <th>Settings</th>
                     </tr>
                 </thead>
@@ -22,11 +21,6 @@
                             </td>
                             <td>
                                 {{ $d->name }}
-                            </td>
-                            <td>
-                                @foreach($d->images as $image)
-                                    <img style="height: 50px; width: 50px" src="{{ asset("uploads/$image->image") }}" alt="">
-                                @endforeach
                             </td>
                             <td>
                                 <a href="{{$route.'/'.$d->id}}/edit" data-toggle="tooltip" data-placement="top" title="Edit" class="btn btn-primary btn-circle tooltip-primary">
