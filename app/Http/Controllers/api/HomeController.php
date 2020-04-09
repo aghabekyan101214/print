@@ -17,15 +17,9 @@ class HomeController extends Controller
         $data = StaticData::selectRaw("about_text")->first();
         $url = Url::to("/");
         $logos = Logo::selectRaw("id, concat('".$url."/uploads/', image) as image")->get();
-        $printServices = Product::where("category", 0)->get();
-        $signage = Product::where("category", 1)->get();
-        $apparel = Product::where("category", 2)->get();
         $resp = array(
             "about" => $data,
             "logos" => $logos,
-            "printServices" => $printServices,
-            "signage" => $signage,
-            "apparel" => $apparel
         );
         return response()->json($resp);
     }
