@@ -12,7 +12,7 @@ class FormController extends Controller
     public function index($slug)
     {
         $form = Product::where("slug", $slug)->with(["productForms" => function($query) {
-            $query->with(["values", "form"]);
+            $query->whereHas("values")->with(["values", "form"]);
         }])->first();
         $resp = array(
             "forms" => $form->productForms ?? []
