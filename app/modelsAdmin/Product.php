@@ -36,4 +36,9 @@ class Product extends Model
     {
         return $this->hasMany("App\modelsAdmin\ProductImage");
     }
+
+    public function productForms()
+    {
+        return $this->hasMany("App\modelsAdmin\Productform", "product_id", "id");
+    }
 }

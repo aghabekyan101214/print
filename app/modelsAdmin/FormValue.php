@@ -13,8 +13,4 @@ class FormValue extends Model
         return $this->belongsTo("App\modelsAdmin\Form", "form_id", "id");
     }
 
-    public function values()
-    {
-        return $this->hasMany("App\modelsAdmin\FormValue", "form_id", "id");
-    }
 }
