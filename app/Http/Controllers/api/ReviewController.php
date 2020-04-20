@@ -31,4 +31,10 @@ class ReviewController extends Controller
 
         return ResponseHelper::success(array());
     }
+
+    public function getReviews()
+    {
+        $reviews = Review::where(["approved" => 0])->orderBy("id", "DESC")->get();
+        return ResponseHelper::success($reviews);
+    }
 }
