@@ -17,10 +17,13 @@
                     @foreach($data as $d)
                         <tr>
                             <td>
-                                {{ $categories[$d->category] }}
+                                {{ $d->name }}
                             </td>
                             <td>
-                                {{ $d->name }}
+                                <img class="img-fluid" src="{{ asset('/uploads/' . $d->image) }}" style="height: 150px;" alt="">
+                            </td>
+                            <td>
+                                {{ $d->text }}
                             </td>
                             <td>
                                 <a href="{{$route.'/change-status/'.$d->id}}" data-toggle="tooltip" data-placement="top" title="Change Status" class="btn btn-primary btn-circle @if($d->approved) tooltip-success @else tooltip-danger @endif">
