@@ -10,6 +10,7 @@
                         <th>Name</th>
                         <th>Image</th>
                         <th>Text</th>
+                        <th>Status</th>
                         <th>Settings</th>
                     </tr>
                 </thead>
@@ -24,6 +25,13 @@
                             </td>
                             <td>
                                 {{ $d->text }}
+                            </td>
+                            <td>
+                                @if($d->approved)
+                                    <span class="label label-success">Approved</span>
+                                @else
+                                    <span class="label label-danger">Not Approved</span>
+                                @endif
                             </td>
                             <td>
                                 <a href="{{$route.'/change-status/'.$d->id}}" data-toggle="tooltip" data-placement="top" title="Change Status" class="btn btn-circle @if($d->approved) tooltip-success btn-success @else btn-danger tooltip-danger @endif">
