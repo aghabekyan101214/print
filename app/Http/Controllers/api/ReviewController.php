@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\modelsAdmin\Review;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\URL;
 
 class ReviewController extends Controller
 {
@@ -34,7 +35,8 @@ class ReviewController extends Controller
 
     public function getReviews()
     {
-        $reviews = Review::where(["approved" => 0])->orderBy("id", "DESC")->get();
+        $base = URL::to("/");
+        $reviews = Review::selectRaw("id, name, text, concat('".$base."', '/uploads/', image) as image")->where(["approved" => 0])->orderBy("id", "DESC")->get();
         return ResponseHelper::success($reviews);
     }
 }
