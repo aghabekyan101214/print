@@ -18,4 +18,5 @@ Route::group(["middleware" => "cors"], function(){
     Route::get('/get-business-services', 'api\BusinessServiceController@index');
     Route::get('/business-service/{slug?}', 'api\BusinessServiceController@getBusinessService');
     Route::post('/leave-review', 'api\ReviewController@index');
+    Route::get('/get-reviews', 'api\ReviewController@getReviews');
 });
