@@ -26,8 +26,8 @@
                                 {{ $d->text }}
                             </td>
                             <td>
-                                <a href="{{$route.'/change-status/'.$d->id}}" data-toggle="tooltip" data-placement="top" title="Change Status" class="btn btn-primary btn-circle @if($d->approved) tooltip-success @else tooltip-danger @endif">
-                                    <i class="fas fa-nintendo-switch"></i>
+                                <a href="{{$route.'/change-status/'.$d->id}}" data-toggle="tooltip" data-placement="top" title="Change Status" class="btn btn-circle @if($d->approved) tooltip-success btn-success @else btn-danger tooltip-danger @endif">
+                                    <i class="fas fa-power-off"></i>
                                 </a>
                                 <form style="display: inline-block" action="{{$route.'/'.$d->id}}" onsubmit="if(confirm('Do You Really Want To Delete The Product?') == false) return false;" method="post">
                                     @csrf
