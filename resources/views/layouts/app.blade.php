@@ -126,6 +126,13 @@
                     </li>
 
                     <li>
+                        <a href="/admin/reviews" class="waves-effect">
+                            <i class="mdi mdi-network-question fa-fw"></i>
+                            <span class="hide-menu">Reviews</span>
+                        </a>
+                    </li>
+
+                    <li>
                         <a href="javascript:void(0)" class="waves-effect">
                             <i class="mdi mdi-file-xml fa-fw"></i>
                             <span class="hide-menu">Form Values<span class="fa arrow"></span></span>

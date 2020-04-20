@@ -36,7 +36,7 @@ class ReviewController extends Controller
     public function getReviews()
     {
         $base = URL::to("/");
-        $reviews = Review::selectRaw("id, name, text, concat('".$base."', '/uploads/', image) as image")->where(["approved" => 0])->orderBy("id", "DESC")->get();
+        $reviews = Review::selectRaw("id, name, text, concat('".$base."', '/uploads/', image) as image")->where(["approved" => 1])->orderBy("id", "DESC")->get();
         return ResponseHelper::success($reviews);
     }
 }
