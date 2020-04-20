@@ -24,7 +24,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function(){
     Route::post("forms/edit-form-value", "admin\FormValueController@editFormValue");
     Route::post("static-data", "admin\StaticDataController@store");
     Route::resource("reviews", "admin\ReviewController");
-    Route::post("change-status/{id}", "admin\ReviewController@changeStatus");
+    Route::get("reviews/change-status/{id}", "admin\ReviewController@changeStatus");
 });
 Route::get('/services', 'client\ServiceController@index');
 Route::get('/contact-us', 'client\ContactController@index');
