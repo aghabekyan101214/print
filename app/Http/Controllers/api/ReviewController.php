@@ -16,7 +16,7 @@ class ReviewController extends Controller
         $rules = [
             'name' => 'required|max:191',
             'text' => 'required|max:175',
-            'image' => 'max:10240' .(null != $request->image) ? "|image" : "" //this is 10MB
+            'image' => 'max:10240' .((null != $request->image) ? "|image" : "") //this is 10MB
         ];
         $messages = [
             'name.required' => 'Name or Company Name is required',
