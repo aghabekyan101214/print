@@ -36,7 +36,7 @@ class ReviewController extends Controller
         $review = new Review();
         $review->name = $request->name;
         $review->text = $request->text;
-        $review->image = $image;
+        $review->image = $image ?? null;
         $review->save();
 
         return ResponseHelper::success(array());
