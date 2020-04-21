@@ -56,7 +56,7 @@
                     <a class="logo" href="index.html">
                         <b>
                             <img src="{{asset('assets/plugins/images/aimtech.png')}}" alt="home"
-                                 class="dark-logo" width="100px" height='55px' />
+                                 class="dark-logo" height='65px' style="margin-top: 6px" />
                         </b>
                     </a>
                 </div>
