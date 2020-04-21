@@ -23,6 +23,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function(){
     Route::post("forms/save-form-value", "admin\FormValueController@saveFormValue");
     Route::post("forms/edit-form-value", "admin\FormValueController@editFormValue");
     Route::post("static-data", "admin\StaticDataController@store");
+    Route::delete("static-data/{id}", "admin\StaticDataController@destroy");
     Route::resource("reviews", "admin\ReviewController");
     Route::get("reviews/change-status/{id}", "admin\ReviewController@changeStatus");
 });

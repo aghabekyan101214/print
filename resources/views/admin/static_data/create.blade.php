@@ -51,6 +51,35 @@
 
                             </div>
                         </form>
+                        <h2>Slider Images</h2>
+                        <div class="col-md-12">
+                            <table id="myTable" class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Image</th>
+                                        <th>Settings</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($logos as $logo)
+                                        <tr>
+                                            <td>
+                                                <img class="img-fluid" style="height: 150px;" src="{{ asset("uploads/$logo->image") }}" alt="">
+                                            </td>
+                                            <td>
+                                                <form style="display: inline-block" action="{{$route.'/'.$logo->id}}" onsubmit="if(confirm('Do You Really Want To Delete The Product?') == false) return false;" method="post">
+                                                    @csrf
+                                                    @method("DELETE")
+                                                    <button class="btn btn-danger btn-circle tooltip-danger" data-toggle="tooltip" data-placement="top" title="Delete">
+                                                        <i class="fa fa-trash"></i>
+                                                    </button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>

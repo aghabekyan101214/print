@@ -49,8 +49,9 @@ class StaticDataController extends Controller
     public function index()
     {
         $data = StaticData::first();
+        $logos = Logo::all();
         $route = self::ROUTE;
-        return view(self::FOLDER."create", compact("data", "route"));
+        return view(self::FOLDER."create", compact("data", "route", "logos"));
     }
 
     /**
@@ -85,6 +86,12 @@ class StaticDataController extends Controller
         if(!empty($logos)) {
             DB::table('logos')->insert($logos);
         }
+        return redirect(self::ROUTE);
+    }
+
+    public function destroy($id)
+    {
+        Logo::find($id)->delete();
         return redirect(self::ROUTE);
     }
 }
