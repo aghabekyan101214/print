@@ -29,7 +29,9 @@ class ReviewController extends Controller
         if ($validator->fails()) {
             return ResponseHelper::fail($validator->errors()->first(), 422);
         }
-        $image = FileUploadHelper::upload($request->image, "reviews");
+        if(null != $request->image) {
+            $image = FileUploadHelper::upload($request->image, "reviews");
+        }
 
         $review = new Review();
         $review->name = $request->name;
