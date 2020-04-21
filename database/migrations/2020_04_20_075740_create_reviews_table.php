@@ -15,7 +15,7 @@ class CreateReviewsTable extends Migration
     {
         Schema::create('reviews', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string("image", 191);
+            $table->string("image", 191)->nullable();
             $table->string("name", 191);
             $table->text("text");
             $table->unsignedTinyInteger("approved")->default(0);
