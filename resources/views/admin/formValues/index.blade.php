@@ -1,6 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
+    <style>
+        .success-alert{
+            opacity: 0;
+            transition: .1s;
+        }
+    </style>
     <div class="white-box m-t-20">
         <h3 class="box-title m-b-10">{{ $product->name }} Form</h3>
 {{--        <a href="{{ $route }}/create" class="box-title m-b-20 btn btn-success">Add New Product</a>--}}
@@ -49,6 +55,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
+                    <div class="success-alert d-none" style="color: green; text-align: center;">New Value Added Successfully</div>
                     <input type="hidden" class="form_product_id">
                     <input type="hidden" class="ul_class">
                     <input class="form-control value" placeholder="Value" type="text">
@@ -91,7 +98,11 @@
                     });
                     $("."+ul_class).html(html);
                     $(".value").val("");
-                    alert("You have added new value successfully")
+                    $(".success-alert").css({"opacity": 1, 'transition': 0});
+                    setTimeout(function(){
+                        $(".success-alert").css({"opacity": 0, 'transition': '2s'});
+                    }, 1000)
+                    // alert("You have added new value successfully")
                 }
             });
         })
