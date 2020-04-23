@@ -16,13 +16,15 @@ class ReviewController extends Controller
         $rules = [
             'name' => 'required|max:191',
             'text' => 'required|max:175',
-            'image' => 'max:10240' .((null != $request->image) ? "|image" : "") //this is 10MB
+//            'image' => 'max:10240' .((null != $request->image) ? "|image" : "") //this is 10MB
+            'image' => 'required|max:10240|image' //this is 10MB
         ];
         $messages = [
-            'name.required' => 'Name or Company Name is required',
+            'name.required' => 'Name or Company Name is Required',
             'text.required' => 'Review message is required',
             'image.max' => 'Image Maximum Size is 10 mb',
             'image.image' => 'Please, Use Valid Image Extension',
+            'image.required' => 'Image field is required',
         ];
 
         $validator = Validator::make($request->all(),$rules, $messages);
