@@ -126,6 +126,13 @@
                     </li>
 
                     <li>
+                        <a href="/admin/partners" class="waves-effect">
+                            <i class="mdi mdi-image-album fa-fw"></i>
+                            <span class="hide-menu">Partners</span>
+                        </a>
+                    </li>
+
+                    <li>
                         <a href="/admin/reviews" class="waves-effect">
                             <i class="mdi mdi-network-question fa-fw"></i>
                             <span class="hide-menu">Reviews</span>

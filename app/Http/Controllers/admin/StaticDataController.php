@@ -72,6 +72,14 @@ class StaticDataController extends Controller
             $file = Storage::putFile(self::UPLOAD_FOLDER, new File($request->main_banner), 'public');
             $staticData->main_banner = $file;
         }
+
+        $staticData->about_text = $request->about_text ?? "-";
+        $staticData->save();
+        return redirect(self::ROUTE);
+    }
+
+    public function saveLogos(Request $request)
+    {
         $logos = [];
         $allowedfileExtension = ['jpg', 'png', 'jpeg', 'jfif'];
         if(null != $request->logos)
@@ -81,17 +89,23 @@ class StaticDataController extends Controller
                     $logos[]["image"] = $image;
                 }
             }
-        $staticData->about_text = $request->about_text;
-        $staticData->save();
         if(!empty($logos)) {
             DB::table('logos')->insert($logos);
         }
-        return redirect(self::ROUTE);
+        return redirect("/admin/partners");
     }
 
     public function destroy($id)
     {
         Logo::find($id)->delete();
-        return redirect(self::ROUTE);
+        return redirect("/admin/partners");
+    }
+
+    public function partners()
+    {
+        $data = StaticData::first();
+        $logos = Logo::all();
+        $route = self::ROUTE;
+        return view(self::FOLDER."createPartner", compact( "route", "logos", "data"));
     }
 }
