@@ -24,10 +24,13 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function(){
     Route::get("forms/{product_id}", "admin\FormValueController@index");
     Route::post("forms/save-form-value", "admin\FormValueController@saveFormValue");
     Route::post("forms/edit-form-value", "admin\FormValueController@editFormValue");
+
     Route::post("static-data", "admin\StaticDataController@store");
     Route::delete("static-data/{id}", "admin\StaticDataController@destroy");
     Route::resource("reviews", "admin\ReviewController");
     Route::get("reviews/change-status/{id}", "admin\ReviewController@changeStatus");
+
+    Route::resource("product-prices", "admin\FormValuePriceController");
 });
 Route::get('/services', 'client\ServiceController@index');
 Route::get('/contact-us', 'client\ContactController@index');

@@ -119,6 +119,13 @@
                     </li>
 
                     <li>
+                        <a href="/admin/product-prices" class="waves-effect">
+                            <i class="mdi mdi-coin fa-fw"></i>
+                            <span class="hide-menu">Prices</span>
+                        </a>
+                    </li>
+
+                    <li>
                         <a href="/admin/static-data" class="waves-effect">
                             <i class="mdi mdi-file-xml fa-fw"></i>
                             <span class="hide-menu">Static Data</span>
