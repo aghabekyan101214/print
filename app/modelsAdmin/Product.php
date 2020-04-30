@@ -18,14 +18,14 @@ class Product extends Model
      *
      * @var array
      */
-    const FORM_1 = [1, 2, 3, 4, 5, 6];
+    const FORM_1 = [1, 2, 3, 4, 5, 6, 10];
 
     /**
      * The Form 2 IDs.
      *
      * @var array
      */
-    const FORM_2 = [7, 2, 8, 9, 5, 4, 6];
+    const FORM_2 = [7, 2, 8, 9, 5, 4, 6, 10];
 
     public function forms()
     {

@@ -21,6 +21,7 @@ class FormsTableSeeder extends Seeder
             ['name' => 'Material Type', "slug" => "material_type"],
             ['name' => 'Print Side', "slug" => "print_side"],
             ['name' => 'Thickness', "slug" => "thickness"],
+            ['name' => 'Time', "slug" => "time"],
         ]);
     }
 }
