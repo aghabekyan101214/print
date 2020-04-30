@@ -31,6 +31,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function(){
     Route::get("reviews/change-status/{id}", "admin\ReviewController@changeStatus");
 
     Route::resource("product-prices", "admin\FormValuePriceController");
+    Route::resource("home-banners", "admin\HomeBannerController");
 });
 Route::get('/services', 'client\ServiceController@index');
 Route::get('/contact-us', 'client\ContactController@index');

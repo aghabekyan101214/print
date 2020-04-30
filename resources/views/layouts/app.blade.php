@@ -112,6 +112,13 @@
                     </li>
 
                     <li>
+                        <a href="/admin/home-banners" class="waves-effect">
+                            <i class="mdi mdi-image-album fa-fw"></i>
+                            <span class="hide-menu">Home Banners</span>
+                        </a>
+                    </li>
+
+                    <li>
                         <a href="/admin/products" class="waves-effect">
                             <i class="mdi mdi-drawing-box fa-fw"></i>
                             <span class="hide-menu">Products</span>
