@@ -3,7 +3,6 @@
 @section('content')
     <div class="white-box m-t-20">
         <h3 class="box-title m-b-10">{{ $title }}</h3>
-        <a href="{{ $route }}/create" class="box-title m-b-20 btn btn-success">Add New Price List</a>
         <div class="table-responsive">
             <table id="myTable" class="table table-striped">
                 <thead>
