@@ -37,7 +37,7 @@ class FormController extends Controller
         foreach ($productPrice as $p) {
             $savedArr = [];
             foreach ($p->valuePrices as $v) {
-                $savedArr[]['form_value_id'] = $v->form_value_id;
+                $savedArr[] = $v->form_value_id;
             }
             if($savedArr == $arr) {
                 return $p->price;
