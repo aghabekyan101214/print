@@ -44,6 +44,6 @@ class Product extends Model
 
     public function prices()
     {
-        return $this->hasMany("App\ModelsAdmin\ProductPrice", "product_id", "id");
+        return $this->hasMany("App\modelsAdmin\ProductPrice", "product_id", "id");
     }
 }
