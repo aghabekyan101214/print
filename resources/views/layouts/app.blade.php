@@ -240,6 +240,9 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
+        $(document).on("wheel", "input[type=number]", function (e) {
+            $(this).blur();
+        });
     });
 
     function selectForm(form1, form2, _this) {
