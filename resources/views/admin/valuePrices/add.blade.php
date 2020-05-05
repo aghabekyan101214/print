@@ -38,6 +38,40 @@
                     </div>
                 </div>
             </div>
+            <div class="panel">
+                <div class="panel-wrapper collapse in" aria-expanded="true">
+                    <div class="panel-body" style="margin-top: 20px">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Forms</th>
+                                    <th>Price</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                @foreach($data->prices as $d)
+
+                                        @foreach($d->valuePrices as $bin => $val)
+                                            <tr>
+                                                <td @if( ($bin + 1) == count($d->valuePrices) ) style="border-bottom: 2px solid red" @endif >
+                                                    {{ $val->formValue->name }}
+                                                </td>
+                                                @if( $bin == 0 )
+                                                    <td style="vertical-align: middle; text-align: center; border-bottom: 2px solid red" rowspan="{{ count($d->valuePrices) }}">
+                                                        <input class="price-inp" type="number" step="any" style="font-size: 26px; border: none" id="{{ $d->id }}" value="{{ $d->price }}">
+                                                    </td>
+                                                @endif
+                                            </tr>
+                                        @endforeach
+
+
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <script>
@@ -70,7 +104,16 @@
                     alert("Somtething Went Wrong")
                 }
                 $(".sub").css("display", "inline-block");
-            })
+            });
         })
+
+        $(document).on("blur", ".price-inp", function(){
+            let val = $(this).val();
+            let price_id = $(this).attr("id");
+
+            $.post( "{{ $route }}/edit-price", {price_id, val}).fail(data => {
+                alert("Something Went Wrong, Please, Try Again");
+            })
+        });
     </script>
 @endsection

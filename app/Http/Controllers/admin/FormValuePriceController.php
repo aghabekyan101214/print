@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\modelsAdmin\Product;
+use function foo\func;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\modelsAdmin\ProductPrice;
@@ -33,10 +34,11 @@ class FormValuePriceController extends Controller
         $data = Product::where("id", $id)
             ->with(["productForms" => function($query) {
             $query->whereHas("values")->with(["values", "form"]);
-        }])->first();
+        }, "prices" => function($query) {
+                $query->with(["valuePrices.formValue"]);
+            }])->first();
         $route = self::ROUTE;
         $title = self::TITLE;
-
         return view(self::FOLDER."add", compact("data", "route", "title"));
     }
 
@@ -60,6 +62,17 @@ class FormValuePriceController extends Controller
         $productPrice->save();
         $productPrice->valuePrices()->createMany($arr);
         return 1;
+    }
+
+    public function editPrice(Request $request)
+    {
+        $productPrice = ProductPrice::find($request->price_id);
+        $productPrice->price = $request->val;
+
+        if($productPrice->save()){
+            return 1;
+        }
+        return 0;
     }
 
     private function checkMatches($product_id, $arr)

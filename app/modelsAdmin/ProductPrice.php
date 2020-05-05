@@ -10,4 +10,9 @@ class ProductPrice extends Model
     {
         return $this->hasMany("App\modelsAdmin\FormValuePrice", "product_price_id", "id");
     }
+
+    public function product()
+    {
+        return $this->belongsTo("App\modelsAdmin\Product", "product_id", "id");
+    }
 }
