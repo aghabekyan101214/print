@@ -154,6 +154,13 @@
                     </li>
 
                     <li>
+                        <a href="/admin/contact" class="waves-effect">
+                            <i class="mdi mdi-phone fa-fw"></i>
+                            <span class="hide-menu">Contact</span>
+                        </a>
+                    </li>
+
+                    <li>
                         <a href="javascript:void(0)" class="waves-effect">
                             <i class="mdi mdi-file-xml fa-fw"></i>
                             <span class="hide-menu">Form Values<span class="fa arrow"></span></span>
