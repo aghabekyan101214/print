@@ -45,7 +45,7 @@ class ContactController extends Controller
             'full_name' => 'max:191',
             'company_name' => 'max:191',
             'phone' => 'max:191',
-            'email' => 'max:191',
+            'email' => 'max:191|email',
             'comment' => 'max:3000',
         ]);
         DB::beginTransaction();
