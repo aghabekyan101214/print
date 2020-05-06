@@ -22,7 +22,7 @@
                             <td>{{ $d->company_name }}</td>
                             <td>{{ $d->phone }}</td>
                             <td>{{ $d->email }}</td>
-                            <td>{{ $d->comment }}</td>
+                            <td>{!! $d->comment !!}</td>
                             <td>
                                 <a href="{{$route.'/'.$d->id}}/edit" data-toggle="tooltip" data-placement="top" title="Edit" class="btn btn-primary btn-circle tooltip-primary">
                                     <i class="fas fa-pencil-alt"></i>
