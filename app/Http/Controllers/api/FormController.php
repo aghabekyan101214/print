@@ -25,7 +25,8 @@ class FormController extends Controller
     {
         $price = $this->checkMatches($request->productId, $request->arr);
         $resp = array(
-            "price" => $price
+            "price" => $price->price ?? 0,
+            "obj" => $price,
         );
         return response()->json($resp);
 
@@ -41,7 +42,7 @@ class FormController extends Controller
                 $savedArr[] = $v->form_value_id;
             }
             if($savedArr == $arr) {
-                return $p->price;
+                return $p;
             }
         }
         return 0;
