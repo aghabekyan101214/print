@@ -21,4 +21,10 @@ class ContactController extends Controller
         $title = self::TITLE;
         return view(self::FOLDER."index", compact("data", "route", "title"));
     }
+
+    public function destroy($id)
+    {
+        Contact::find($id)->delete();
+        return redirect(self::ROUTE);
+    }
 }
