@@ -8,6 +8,7 @@ use App\modelsAdmin\Contact;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class ContactController extends Controller
 {
@@ -41,13 +42,23 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+
+        $rules = [
             'full_name' => 'max:191',
             'company_name' => 'max:191',
-            'phone' => 'max:191',
-            'email' => 'max:191|email',
+            'phone' => 'max:191|required',
+            'email' => 'max:191|required|email',
             'comment' => 'max:3000',
-        ]);
+        ];
+
+        $messages = [
+            'email' => "The Email Field Must Be Filled In Correctly"
+        ];
+
+        $validator = Validator::make($request->all(),$rules, $messages);
+        if ($validator->fails()) {
+            return ResponseHelper::fail($validator->errors()->first(), 422);
+        }
         DB::beginTransaction();
 
         $contact = new Contact();
