@@ -30,7 +30,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function(){
     Route::resource("reviews", "admin\ReviewController");
     Route::get("reviews/change-status/{id}", "admin\ReviewController@changeStatus");
 
-    Route::resource("/contact", "admin\ReviewController@changeStatus");
+    Route::resource("/contact", "admin\ContactController");
 
     Route::resource("product-prices", "admin\FormValuePriceController");
     Route::post("product-prices/edit-price", "admin\FormValuePriceController@editPrice");
