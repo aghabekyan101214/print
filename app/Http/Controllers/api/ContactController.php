@@ -47,8 +47,8 @@ class ContactController extends Controller
         $rules = [
             'full_name' => 'max:191',
             'company_name' => 'max:191',
-            'phone' => 'max:191|required',
-            'email' => 'max:191|required|email',
+            'phone' => 'max:191',
+            'email' => 'max:191' . (null != $request->email) ? '|email' : "" ,
             'comment' => 'max:3000',
         ];
 
