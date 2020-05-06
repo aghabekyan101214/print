@@ -68,7 +68,7 @@ class ContactController extends Controller
         $contact->phone = $request->phone;
         $contact->email = $request->email;
         $contact->comment = $request->comment;
-        if(null != $request->combination_id){
+        if(null != $request->combination_id && $request->combination_id){
             $productPrice = ProductPrice::with(["product", "valuePrices.formValue"])->find($request->combination_id);
             $text = "<p>Product:" . $productPrice->product->name . "</p>";
             $text .= "<p>Price: ". $productPrice->price ." </p>";
