@@ -18,6 +18,7 @@ class ContactController extends Controller
     {
         $data = Contact::orderBy("id", "DESC")->get();
         $route = self::ROUTE;
-        return view(self::FOLDER."index", compact("data", "route"));
+        $title = self::TITLE;
+        return view(self::FOLDER."index", compact("data", "route", "title"));
     }
 }
