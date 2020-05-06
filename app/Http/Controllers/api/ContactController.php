@@ -48,7 +48,7 @@ class ContactController extends Controller
             'full_name' => 'max:191',
             'company_name' => 'max:191',
             'phone' => 'max:191',
-            'email' => 'max:191' . (null != $request->email) ? '|email' : "" ,
+            'email' => (null != $request->email) ? 'max:191|email' : "max:191" ,
             'comment' => 'max:3000',
         ];
 
