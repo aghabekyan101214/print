@@ -70,12 +70,12 @@ class ContactController extends Controller
         $contact->comment = $request->comment;
         if(null != $request->combination_id){
             $productPrice = ProductPrice::with(["product", "valuePrices.formValue"])->find($request->combination_id);
-            $text = "<p>Product: $productPrice->product->name</p>";
-            $text .= "<p>Price: $productPrice->price</p>";
+            $text = "<p>Product:" . $productPrice->product->name . "</p>";
+            $text .= "<p>Price: ". $productPrice->price ." </p>";
             $text .= "<p>Forms:</p>";
             $text .= "<ul>";
             foreach ($productPrice->valuePrices as $val) {
-                $text .= "<li>$val->formValue->name</li>";
+                $text .= "<li>". $val->formValue->name ."</li>";
             }
             $text .= "</ul>";
             $contact->comment .= "<br>" . $text;
