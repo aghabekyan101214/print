@@ -58,8 +58,8 @@ class ContactController extends Controller
         $contact->comment = $request->comment;
 
         $contact->save();
-        if(null != $request->files) {
-            $files = FileUploadHelper::uploadMultiple($request->files, ["*"], self::UPLOAD_FOLDER);
+        if(null != $request->uploaded_files) {
+            $files = FileUploadHelper::uploadMultiple($request->uploaded_files, ["*"], self::UPLOAD_FOLDER);
             if(!empty($files)) $contact->files()->createMany([$files]);
         }
         DB::commit();
