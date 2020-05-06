@@ -10,7 +10,7 @@ class ContactController extends Controller
 {
     const FOLDER = "admin.contact."; //View Folder Path
 
-    const ROUTE = "/admin/contact/"; // Curent Resource Route
+    const ROUTE = "/admin/contact"; // Curent Resource Route
 
     const TITLE = "Contact"; // Curent Resource Route
 
