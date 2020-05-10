@@ -12,7 +12,7 @@
 */
 
 Auth::routes();
-
+Route::get("/", "HomeController@index");
 Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function(){
     Route::get("/", "HomeController@index");
     Route::resource("business-services", "admin\BusinessServiceController");
@@ -24,6 +24,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function(){
     Route::get("forms/{product_id}", "admin\FormValueController@index");
     Route::post("forms/save-form-value", "admin\FormValueController@saveFormValue");
     Route::post("forms/edit-form-value", "admin\FormValueController@editFormValue");
+    Route::post("forms/delete-form-value", "admin\FormValueController@deleteFormValue");
 
     Route::post("static-data", "admin\StaticDataController@store");
     Route::delete("static-data/{id}", "admin\StaticDataController@destroy");

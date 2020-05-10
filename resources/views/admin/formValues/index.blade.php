@@ -28,8 +28,9 @@
                             <td>
                                 <ul class="ul-{{ $bin }}">
                                     @foreach($f->values as $v)
-                                        <li>
+                                        <li style="padding: 5px 0">
                                             <input class="edit-inp" style="border: none" type="text" product_form_id="{{ $v->id }}" value="{{ $v->name }}">
+                                            <button class="btn btn-danger btn-circle btn-xs delete-form" product_form_id="{{ $v->id }}"><i class="fa fa-trash"></i></button>
                                         </li>
 {{--                                        <li> <span>{{ $v->name }}</span> <button class="btn btn-primary btn-circle btn-xs"><i class="fa fa-edit"></i></button></li>--}}
                                     @endforeach
@@ -119,6 +120,20 @@
                 }
             });
         });
+
+        $(document).on("click", ".delete-form", function () {
+            let id = $(this).attr("product_form_id");
+            $(this).addClass("disabled");
+            $.post( "/admin/forms/delete-form-value",{id}, ( data ) => {
+                if(data == 1) {
+                    $(this).parentsUntil("ul").remove();
+                } else {
+                    alert("Something Went Wrong");
+                    location.reload();
+                }
+                $(this).removeClass("disabled");
+            });
+        })
     </script>
 @endsection
 

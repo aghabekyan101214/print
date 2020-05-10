@@ -46,4 +46,13 @@ class FormValueController extends Controller
         return 0;
 
     }
+
+    public function deleteFormValue(Request $request)
+    {
+        $formValue = FormValue::find($request->id);
+        if($formValue->delete()){
+            return 1;
+        }
+        return 0;
+    }
 }
