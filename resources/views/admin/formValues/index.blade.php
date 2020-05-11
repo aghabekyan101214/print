@@ -92,8 +92,9 @@
                 if(data.data) {
                     let html = "";
                     data.data.forEach(function (e) {
-                        html += `<li>
+                        html += `<li style="padding: 5px 0">
                                     <input class="edit-inp" style="border: none" type="text" product_form_id="${e.id}" value="${e.name}">
+                                    <button class="btn btn-danger btn-circle btn-xs delete-form" product_form_id="${e.id}"><i class="fa fa-trash"></i></button>
                                  </li>`;
                         // html += "<li>" + e.name + "</li>";
                     });
