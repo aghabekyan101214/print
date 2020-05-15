@@ -12,6 +12,9 @@
 */
 
 Auth::routes();
+Route::get("/register", function (){
+    return redirect("/login");
+});
 Route::get("/", "HomeController@index");
 Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function(){
     Route::get("/", "HomeController@index");
