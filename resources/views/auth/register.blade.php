@@ -1,5 +1,10 @@
 @extends("auth.layout")
 @section("content")
+    <style>
+        .new-login-register .new-login-box{
+            margin-top: 3%;
+        }
+    </style>
     <div class="new-login-box">
         <div class="white-box">
             <h3 class="box-title m-b-0">Sign Up</h3>
