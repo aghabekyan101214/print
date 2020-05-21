@@ -15,8 +15,14 @@ class FormController extends Controller
         $form = Product::where("slug", $slug)->with(["productForms" => function($query) {
             $query->whereHas("values")->with(["values", "form"]);
         }])->first();
+
+        $prices = ProductPrice::with("valuePrices")->where("product_id", $form->id)->get();
+
+        $combinations = $this->pluck($prices, "form_value_id");
+
         $resp = array(
-            "forms" => $form->productForms ?? []
+            "forms" => $form->productForms ?? [],
+            "combinations" => $combinations ?? [],
         );
         return ResponseHelper::success($resp);
     }
@@ -46,5 +52,14 @@ class FormController extends Controller
             }
         }
         return 0;
+    }
+
+    private function pluck($data, $key)
+    {
+        $arr = [];
+        foreach ($data as $d) {
+            $arr []= $d->valuePrices->pluck($key);
+        }
+        return $arr;
     }
 }
