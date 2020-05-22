@@ -33,6 +33,9 @@
                                         <i class="fa fa-trash"></i>
                                     </button>
                                 </form>
+                                <a href="{{$route.'/'.$d->id}}" data-toggle="tooltip" data-placement="top" title="Sorting" class="btn btn-success btn-circle tooltip-success">
+                                    <i class="fas fa-sort"></i>
+                                </a>
                             </td>
                         </tr>
                     @endforeach

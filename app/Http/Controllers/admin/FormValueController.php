@@ -19,7 +19,7 @@ class FormValueController extends Controller
     public function index($product_id)
     {
         $product = Product::findOrFail($product_id);
-        $forms = ProductForm::with(["form", "values"])->where("product_id", $product_id)->get();
+        $forms = ProductForm::with(["form", "values"])->where("product_id", $product_id)->orderBy("order")->get();
         $route = self::ROUTE;
         return view(self::FOLDER . "index", compact("product", "forms", "route"));
     }

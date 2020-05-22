@@ -29,7 +29,7 @@ class Product extends Model
 
     public function forms()
     {
-        return $this->belongsToMany("App\modelsAdmin\Form", "products_forms", "product_id", "form_id");
+        return $this->belongsToMany("App\modelsAdmin\Form", "products_forms", "product_id", "form_id")->withPivot("order")->orderBy("order");
     }
 
     public function images()
@@ -39,7 +39,7 @@ class Product extends Model
 
     public function productForms()
     {
-        return $this->hasMany("App\modelsAdmin\ProductForm", "product_id", "id");
+        return $this->hasMany("App\modelsAdmin\ProductForm", "product_id", "id")->orderBy("order");
     }
 
     public function prices()

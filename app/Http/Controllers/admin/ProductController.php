@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\modelsAdmin\Form;
 use App\modelsAdmin\Product;
+use App\modelsAdmin\ProductForm;
 use Illuminate\Http\File;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -105,7 +106,19 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
+        $route = self::ROUTE;
+        return view(self::FOLDER."show", compact("route", "product"));
+    }
 
+    public function sort(Request $request)
+    {
+
+        foreach ($request->form_id as $key => $value) {
+            $form = ProductForm::where(["form_id" => $value, "product_id" => $request->product_id])->first();
+            $form->order = $key;
+            $form->save();
+        }
+        return redirect(self::ROUTE);
     }
 
     /**

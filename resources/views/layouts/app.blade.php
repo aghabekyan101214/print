@@ -36,6 +36,8 @@
     <link href="{{ asset("assets/daterangepicker/daterangepicker.css") }}" rel="stylesheet">
     <!-- Dropify css -->
     <link rel="stylesheet" href="{{ asset("assets/plugins/bower_components/dropify/dist/css/dropify.min.css") }}">
+    <!-- jquery ui css -->
+    <link rel="stylesheet" href="{{ asset("assets/jquery-ui/jquery-ui.css") }}">
 </head>
 <body class="fix-header">
 
@@ -213,6 +215,8 @@
 <script src="{{ asset("assets/moment/moment.min.js") }}"></script>
 <!--DateRAngePicker Js-->
 <script src="{{ asset("assets/daterangepicker/daterangepicker.js") }}"></script>
+<!--Jquery ui Js-->
+<script src="{{ asset("assets/jquery-ui/jquery-ui.js") }}"></script>
 
 <script>
     $(function () {
@@ -221,6 +225,9 @@
 
     $(document).ready(function() {
         $('.select2').select2();
+        $( ".sortable").sortable({
+            appendTo: document.body
+        });
     });
 
     // Daterange picker
