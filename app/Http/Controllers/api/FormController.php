@@ -41,12 +41,14 @@ class FormController extends Controller
     private function checkMatches($product_id, $arr)
     {
         $arr = explode(",", $arr);
+        sort($arr);
         $productPrice = ProductPrice::with("valuePrices")->where("product_id", $product_id)->get();
         foreach ($productPrice as $p) {
             $savedArr = [];
             foreach ($p->valuePrices as $v) {
                 $savedArr[] = $v->form_value_id;
             }
+            sort($savedArr);
             if($savedArr == $arr) {
                 return $p;
             }
