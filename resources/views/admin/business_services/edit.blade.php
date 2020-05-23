@@ -36,7 +36,7 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-2">Details</label>
                                     <div class="col-md-9">
-                                        <textarea name="comment" required id="editor" class="form-control ">{!! $businessService->comment !!}</textarea>
+                                        <textarea name="comment" id="editor" class="form-control ">{!! $businessService->comment !!}</textarea>
                                         @error('comment')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
