@@ -52,7 +52,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="control-label col-md-2">Upload Slider Images (Choose Multiple)</label>
+                                    <label class="control-label col-md-2">Upload Slider Images (Choose Multiple) <b style="color: green">Recommended size is 1000 x 700</b> </label>
                                     <div class="col-md-9">
                                         <input multiple value="{{ old("images") }}" type="file" id="input-file-now" class="dropify" name="images[]" />
                                         @error('images')
