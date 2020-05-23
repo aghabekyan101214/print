@@ -11,6 +11,7 @@
                         <th>Image</th>
                         <th>Slider Images</th>
                         <th>Title</th>
+                        <th>Details</th>
                         <th>Settings</th>
                     </tr>
                 </thead>
@@ -24,6 +25,7 @@
                                 @endforeach
                             </td>
                             <td>{{ $d->title }}</td>
+                            <td>{!! $d->comment !!}</td>
                             <td>
                                 <a href="{{$route.'/'.$d->id}}/edit" data-toggle="tooltip" data-placement="top" title="Edit" class="btn btn-primary btn-circle tooltip-primary">
                                     <i class="fas fa-pencil-alt"></i>

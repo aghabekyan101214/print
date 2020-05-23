@@ -68,7 +68,9 @@ class BusinessServiceController extends Controller
         $request->validate([
             'title' => 'required|unique:business_services|max:191',
             'image' => 'required|mimes:jpeg,jpg,png,jfif',
-            'slug' => 'required|unique:business_services|max:191'
+            'slug' => 'required|unique:business_services|max:191',
+            'comment' => 'required',
+
         ]);
         $images = [];
         if(null != $request->images)
@@ -84,6 +86,7 @@ class BusinessServiceController extends Controller
         $service->title = $request->title;
         $service->image = $file;
         $service->slug = $request->slug;
+        $service->comment = $request->comment;
         $service->save();
 
         $service->images()->createMany($images);
@@ -127,7 +130,8 @@ class BusinessServiceController extends Controller
         $request->validate([
             'title' => $businessService->title != $request->title ? 'required|unique:business_services|max:191' : "",
             'image' => 'mimes:jpeg,jpg,png,jfif',
-            'slug' => $businessService->slug == $request->slug ? 'required|max:191' : 'required|max:191|unique:business_services'
+            'slug' => $businessService->slug == $request->slug ? 'required|max:191' : 'required|max:191|unique:business_services',
+            'comment' => 'required',
         ]);
         $images = [];
         if(null != $request->images)
@@ -145,6 +149,7 @@ class BusinessServiceController extends Controller
         }
         $businessService->title = $request->title;
         $businessService->slug = $request->slug;
+        $businessService->comment = $request->comment;
         $businessService->save();
         if(!empty($images)) {
             $businessService->images()->createMany($images);

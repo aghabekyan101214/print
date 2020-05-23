@@ -33,6 +33,16 @@
                                 </div>
 
                                 <div class="form-group">
+                                    <label class="control-label col-md-2">Details</label>
+                                    <div class="col-md-9">
+                                        <textarea name="comment" required id="editor" class="form-control ">{!! $businessService->comment !!}</textarea>
+                                        @error('comment')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
                                     <label class="control-label col-md-2">Business Service Image</label>
                                     <div class="col-md-6">
                                         <input type="file" value="{{ old("image") }}" id="input-file-now" class="dropify" name="image" />
@@ -113,5 +123,17 @@
             ;
             $(".slug").val(text);
         }
+
+        $(document).ready(function(){
+            ClassicEditor
+                .create( document.querySelector( '#editor' ) )
+                .then( editor => {
+                    console.log( editor );
+                } )
+                .catch( error => {
+                    console.error( error );
+                } );
+
+        });
     </script>
 @endsection
