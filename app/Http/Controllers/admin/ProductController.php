@@ -17,47 +17,41 @@ class ProductController extends Controller
 
     /**
      * The name of the view folder.
-     *
      * @var string
      */
     const FOLDER = "admin.products.";
 
     /**
      * The name of the Route.
-     *
      * @var string
      */
     const ROUTE = "/admin/products";
 
     /**
      * Display a listing of the resource.
-     *
      * @return \Illuminate\Http\Response
      */
 
     /**
      * The name of the Upload Folder.
-     *
      * @var string
      */
     const UPLOAD_FOLDER = "products";
 
     /**
      * Display a listing of the resource.
-     *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
         $route = self::ROUTE;
-        $data = Product::paginate(500);
+        $data = Product::orderBy("order")->paginate(500);
         $categories = Product::CATEGORIES;
-        return view(self::FOLDER."index", compact("route", "data", "categories"));
+        return view(self::FOLDER . "index", compact("route", "data", "categories"));
     }
 
     /**
      * Show the form for creating a new resource.
-     *
      * @return \Illuminate\Http\Response
      */
     public function create()
@@ -67,13 +61,12 @@ class ProductController extends Controller
         $route = self::ROUTE;
         $form1 = Product::FORM_1;
         $form2 = Product::FORM_2;
-        return view(self::FOLDER."create", compact("route", "forms", "categories", "form1", "form2"));
+        return view(self::FOLDER . "create", compact("route", "forms", "categories", "form1", "form2"));
     }
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -100,14 +93,13 @@ class ProductController extends Controller
 
     /**
      * Display the specified resource.
-     *
-     * @param  \App\modelsAdmin\Product  $product
+     * @param \App\modelsAdmin\Product $product
      * @return \Illuminate\Http\Response
      */
     public function show(Product $product)
     {
         $route = self::ROUTE;
-        return view(self::FOLDER."show", compact("route", "product"));
+        return view(self::FOLDER . "show", compact("route", "product"));
     }
 
     public function sort(Request $request)
@@ -119,6 +111,22 @@ class ProductController extends Controller
             $form->save();
         }
         return redirect(self::ROUTE);
+    }
+
+    public function sortProducts(Request $request)
+    {
+        foreach ($request->product_id as $key => $value) {
+            Product::where(["id" => $value])->update(["order" => $key]);
+        }
+        return redirect(self::ROUTE);
+    }
+
+    public function sortProductsView($category)
+    {
+        $products = Product::where("category", $category)->get();
+        $categories = Product::CATEGORIES;
+        $route = self::ROUTE;
+        return view(self::FOLDER."productSort", compact("route", "products", "categories", "category"));
     }
 
     /**

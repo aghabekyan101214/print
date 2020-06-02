@@ -9,7 +9,7 @@
                 <thead>
                     <tr>
                         <th>Product Category</th>
-                        <th>Product Name</th>
+                        <th style="text-align: center">Product Name</th>
                         <th>Settings</th>
                     </tr>
                 </thead>
@@ -18,8 +18,11 @@
                         <tr>
                             <td>
                                 {{ $categories[$d->category] }}
+                                <a href="{{$route.'/sort-products/'.$d->category}}" data-toggle="tooltip" data-placement="top" title="Sorting" class="btn btn-success btn-circle tooltip-success" style="float: right">
+                                    <i class="fas fa-sort"></i>
+                                </a>
                             </td>
-                            <td>
+                            <td style="text-align: center">
                                 {{ $d->name }}
                             </td>
                             <td>

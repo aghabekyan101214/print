@@ -14,9 +14,9 @@ class BusinessServiceController extends Controller
     {
         $url = Url::to("/");
         $services = BusinessService::selectRaw("title, concat('".$url."/uploads/', image) as image, slug")->get();
-        $printServices = Product::where("category", 0)->get();
-        $signage = Product::where("category", 1)->get();
-        $apparel = Product::where("category", 2)->get();
+        $printServices = Product::where("category", 0)->orderBy("order")->get();
+        $signage = Product::where("category", 1)->orderBy("order")->get();
+        $apparel = Product::where("category", 2)->orderBy("order")->get();
         $resp = array(
             "services" => $services,
             "printServices" => $printServices,

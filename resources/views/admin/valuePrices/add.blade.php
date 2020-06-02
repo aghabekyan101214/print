@@ -55,6 +55,15 @@
                                         <td style="text-align: center">
                                             <input class="price-inp" type="number" step="any" style="font-size: 22px; border: none" id="{{ $d->id }}" value="{{ $d->price }}">
                                         </td>
+                                        <td style="text-align: center">
+                                            <form style="display: inline-block" action="{{$route.'/'.$d->id}}" onsubmit="if(confirm('Do You Really Want To Delete The Service?') == false) return false;" method="post">
+                                                @csrf
+                                                @method("DELETE")
+                                                <button class="btn btn-danger btn-circle tooltip-danger" data-toggle="tooltip" data-placement="top" title="Delete">
+                                                    <i class="fa fa-trash"></i>
+                                                </button>
+                                            </form>
+                                        </td>
                                     </tr>
 
 

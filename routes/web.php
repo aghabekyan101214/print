@@ -21,6 +21,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function(){
     Route::resource("business-services", "admin\BusinessServiceController");
     Route::resource("products", "admin\ProductController");
     Route::post("products/sort", "admin\ProductController@sort");
+    Route::post("products/sort-products", "admin\ProductController@sortProducts");
+    Route::get("products/sort-products/{category}", "admin\ProductController@sortProductsView");
 //    Route::resource("product-attributes", "admin\ProductAttributeController");
     Route::get("static-data", "admin\StaticDataController@index");
     Route::get("partners", "admin\StaticDataController@partners");

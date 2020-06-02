@@ -89,4 +89,10 @@ class FormValuePriceController extends Controller
         }
         return 1;
     }
+
+    public function destroy($price_id)
+    {
+        ProductPrice::find($price_id)->delete();
+        return redirect()->back();
+    }
 }
