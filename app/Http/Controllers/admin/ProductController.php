@@ -123,7 +123,7 @@ class ProductController extends Controller
 
     public function sortProductsView($category)
     {
-        $products = Product::where("category", $category)->get();
+        $products = Product::where("category", $category)->orderBy("order")->get();
         $categories = Product::CATEGORIES;
         $route = self::ROUTE;
         return view(self::FOLDER."productSort", compact("route", "products", "categories", "category"));
